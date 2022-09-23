@@ -1,0 +1,169 @@
+/*Обнуление*/
+*{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,*:before,*:after{
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+
+@font-face {
+  font-family: relaway_f;
+  src: url(./fonts/raleway-regular.woff2);
+}
+@font-face {
+  font-family: relaway_f;
+  src: url(./fonts/raleway-black.woff2);
+  font-weight: 900;
+}
+:root {
+  --index: calc(1vw + 1vh);
+}
+%col {
+  color: #e7e7e0;
+}
+%transf {
+  transform: translate3d(0, calc(var(--scrollTop) / -9), 0);
+  will-change: transform;
+}
+%transit {
+  transition: transform .75s cubic-bezier(.075, .5, 0, 1);
+}
+
+body {
+  background-color: #010101;
+  font-family: raleway_f, sans-serif;
+  line-height: 1.39;
+  .content {
+    will-change: transform;
+    .main_header {
+      position: relative;
+      .layers {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+        .layer_header {
+          z-index: 1;
+          transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
+          @extend %transit;
+          text-transform: uppercase;
+          font-weight: 900;
+          will-change: transform;
+          @extend %col;
+          text-shadow: 0 0 15px #9e7d35;
+          .layers_caption {
+            font-size: calc(var(--index) * 1.2);
+            letter-spacing: calc(var(--index) / 3.25);
+            margin-top: calc(var(--index) * -4.3);
+          }
+          .layers_sub_caption {
+            font-size: calc(var(--index) * 1.1);
+            letter-spacing: calc(var(--index) / 3.25);
+          }
+          .layers_tittle {
+            font-size: calc(var(--index) * 2.1);
+            letter-spacing: calc(var(--index) / 3.65);
+          }
+        }
+        .layer {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          background-size: cover;
+          background-position: center;
+          will-change: transform;
+          z-index: 2;
+          @extend %transit;
+        }
+        .layers_base {
+          transform: translate3d(0, calc(var(--scrollTop) / 1.6), 0);
+          z-index: 0;
+        }
+        .layers_middle {
+          transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+        }
+        .layers_front {
+          transform: translate3d(0, calc(var(--scrollTop) / 5.7), 0);
+
+        }
+      }
+    }
+    .main_header::after {
+      content: '';
+      position: absolute;
+      z-index: 20;
+      width: 100%;
+      height: calc(var(--index) * 10);
+      background: url("img/ground.png") no-repeat center;
+      background-size: cover;
+      bottom: calc(var(--index) * -4.3);
+    }
+    .main_article {
+      min-height: 100vh;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      @extend %col;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      .main_article_header {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: calc(var(--index) * 1.8);
+        letter-spacing: calc(var(--index) / 7);
+        @extend %transf;
+        @extend %transit;
+      }
+      p {
+        max-width: calc(var(--index) * 30);
+        font-size: calc(var(--index) * .9);
+        margin-top: calc(var(--index) / 1.2);
+        @extend %transf;
+        @extend %transit;
+      }
+      .copy {
+        position: absolute;
+        bottom: calc(var(--index) * 1.5);
+        opacity: .45;
+        font-size: calc(var(--index) * .75);
+        letter-spacing: calc(var(--index) / 35);
+      }
+    }
+  }
+}
+
